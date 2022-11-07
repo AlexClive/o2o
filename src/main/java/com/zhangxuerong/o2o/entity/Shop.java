@@ -1,5 +1,7 @@
 package com.zhangxuerong.o2o.entity;
 
+import java.util.Date;
+
 public class Shop {
     private Long ShopId;
     private String shopName;
@@ -7,9 +9,9 @@ public class Shop {
     private String shopAddr;
     private String phone;
     private String shopImg;
-    private String priority;
-    private String createTime;
-    private String lastEditTime;
+    private Integer priority;
+    private Date createTime;
+    private Date lastEditTime;
     private Integer enableStatus;
     private String advice;
     private Area area;
@@ -64,27 +66,27 @@ public class Shop {
         this.shopImg = shopImg;
     }
 
-    public String getPriority() {
+    public Integer getPriority() {
         return priority;
     }
 
-    public void setPriority(String priority) {
+    public void setPriority(Integer priority) {
         this.priority = priority;
     }
 
-    public String getCreateTime() {
+    public Date getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(String createTime) {
+    public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
 
-    public String getLastEditTime() {
+    public Date getLastEditTime() {
         return lastEditTime;
     }
 
-    public void setLastEditTime(String lastEditTime) {
+    public void setLastEditTime(Date lastEditTime) {
         this.lastEditTime = lastEditTime;
     }
 
