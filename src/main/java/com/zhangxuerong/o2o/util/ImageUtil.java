@@ -18,14 +18,32 @@ public class ImageUtil {
     private static final SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyyMMddHHmm_ss");
     private static final Random r = new Random();
     private static Logger logger = LoggerFactory.getLogger(ImageUtil.class);
-    public static String generateThumbnail(CommonsMultipartFile thumbnail,String targetAddr){
+
+    public static File transferCommonsMultipartFileToFile(CommonsMultipartFile CFile){
+        File newFile = new File(CFile.getOriginalFilename());
+        try{
+            CFile.transferTo(newFile);
+        }catch (IOException e){
+            logger.error(e.toString());
+        }
+        return  newFile;
+    }
+    /**
+     * 处理缩略图，返回新生成图片的地址
+     * @param thumbnail
+     * @param targetAddr
+     * @return
+     */
+    public static String generateThumbnail(File thumbnail,String targetAddr){
         String realFileName = getRealFileName();
         String extension = getFileExtension(thumbnail);
         makeDirPath(targetAddr);
         String relativeAddr = targetAddr + realFileName+extension;
         File dest = new File(PathUtil.getImgBasePath()+relativeAddr);
+        logger.debug("current reativeAddr is:"+relativeAddr);
+        logger.debug("current reativeAddr is:"+PathUtil.getImgBasePath()+relativeAddr);
         try {
-            Thumbnails.of(thumbnail.getInputStream()).size(200,200)
+            Thumbnails.of(thumbnail).size(200,200)
                     .watermark(Positions.BOTTOM_RIGHT,ImageIO.read(new File(basePath+"/watermark.png")),0.25f)
                     .outputQuality(0.8f)
                     .toFile(dest);
@@ -44,12 +62,12 @@ public class ImageUtil {
         }
     }
 
-    private static String getFileExtension(CommonsMultipartFile cFile) {
-        String originalFileName = cFile.getOriginalFilename();
+    private static String getFileExtension(File cFile) {
+        String originalFileName = cFile.getName();
         return originalFileName.substring(originalFileName.lastIndexOf("."));
     }
 
-    private static String getRealFileName() {
+    public static String getRealFileName() {
         // 获取随机5位数
         int rannum = r.nextInt(8999)+10000;
         String nowtimeStr = sDateFormat.format(new Date());
