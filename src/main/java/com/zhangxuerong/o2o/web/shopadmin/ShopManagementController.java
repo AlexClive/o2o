@@ -7,8 +7,6 @@ import com.zhangxuerong.o2o.entity.Shop;
 import com.zhangxuerong.o2o.enums.ShopSateEnum;
 import com.zhangxuerong.o2o.service.ShopService;
 import com.zhangxuerong.o2o.util.HttpServletRequestUtil;
-import com.zhangxuerong.o2o.util.ImageUtil;
-import com.zhangxuerong.o2o.util.PathUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -64,62 +62,25 @@ public class ShopManagementController {
             // Session
             owner.setUserId(1L);
             shop.setOwner(owner);
-            File shopImgFile = new File(PathUtil.getImgBasePath()+ ImageUtil.getRealFileName());
+            ShopExecution se = null;
             try {
-                shopImgFile.createNewFile();
+                se = shopService.addShop(shop, shopImg.getInputStream(),shopImg.getOriginalFilename());
+                if(se.getState() == ShopSateEnum.CHECK.getState()){
+                    modelMap.put("success", true);
+                }else {
+                    modelMap.put("success", false);
+                    modelMap.put("errMag", se.getStateInfo());
+                }
             } catch (IOException e) {
-                modelMap.put("success", false);
-                modelMap.put("errMag", e.getMessage());
-                return modelMap;
-            }
-            try {
-                inputStreamToFile(shopImg.getInputStream(), shopImgFile);
-            } catch (IOException e) {
-                modelMap.put("success", false);
-                modelMap.put("errMag", e.getMessage());
-                return modelMap;
-            }
-            ShopExecution se = shopService.addShop(shop, shopImgFile);
-            if(se.getState() == ShopSateEnum.CHECK.getState()){
-                modelMap.put("success", true);
-            }else {
                 modelMap.put("success", false);
                 modelMap.put("errMag", se.getStateInfo());
             }
 
-            return  modelMap;
-
         } else {
             modelMap.put("success", false);
             modelMap.put("errMag", "请输入店铺信息");
-            return modelMap;
         }
+        return  modelMap;
     }
 
-    private static void inputStreamToFile(InputStream ins, File file) {
-        FileOutputStream os = null;
-        try {
-            os = new FileOutputStream(file);
-            int bytesRead = 0;
-            byte[] buffer = new byte[1024];
-            while ((bytesRead = ins.read(buffer)) != -1) {
-                os.write(buffer, 0, bytesRead);
-            }
-
-        } catch (Exception e) {
-            throw new RuntimeException("调用inputStreamToFile产生异常：" + e.getMessage());
-        } finally {
-            try {
-                if (os != null) {
-                    os.close();
-                }
-
-                if (ins != null) {
-                    ins.close();
-                }
-            } catch (IOException e) {
-                throw new RuntimeException("inputStreamToFile关闭io产生异常：" + e.getMessage());
-            }
-        }
-    }
 }

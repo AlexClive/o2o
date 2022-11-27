@@ -8,6 +8,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
@@ -30,20 +31,20 @@ public class ImageUtil {
     }
     /**
      * 处理缩略图，返回新生成图片的地址
-     * @param thumbnail
+     * @param thumbnailInputStream
      * @param targetAddr
      * @return
      */
-    public static String generateThumbnail(File thumbnail,String targetAddr){
+    public static String generateThumbnail(InputStream thumbnailInputStream,String fileName, String targetAddr){
         String realFileName = getRealFileName();
-        String extension = getFileExtension(thumbnail);
+        String extension = getFileExtension(fileName);
         makeDirPath(targetAddr);
         String relativeAddr = targetAddr + realFileName+extension;
         File dest = new File(PathUtil.getImgBasePath()+relativeAddr);
-        logger.debug("current reativeAddr is:"+relativeAddr);
-        logger.debug("current reativeAddr is:"+PathUtil.getImgBasePath()+relativeAddr);
+        logger.debug("current complete addr is:"+relativeAddr);
+        logger.debug("basePath is:"+PathUtil.getImgBasePath()+relativeAddr);
         try {
-            Thumbnails.of(thumbnail).size(200,200)
+            Thumbnails.of(thumbnailInputStream).size(200,200)
                     .watermark(Positions.BOTTOM_RIGHT,ImageIO.read(new File(basePath+"/watermark.png")),0.25f)
                     .outputQuality(0.8f)
                     .toFile(dest);
@@ -62,9 +63,8 @@ public class ImageUtil {
         }
     }
 
-    private static String getFileExtension(File cFile) {
-        String originalFileName = cFile.getName();
-        return originalFileName.substring(originalFileName.lastIndexOf("."));
+    private static String getFileExtension(String fileName) {
+        return fileName.substring(fileName.lastIndexOf("."));
     }
 
     public static String getRealFileName() {
