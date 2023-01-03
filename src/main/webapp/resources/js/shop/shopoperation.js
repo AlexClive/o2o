@@ -1,6 +1,11 @@
 $(function () {
+    var shopId = getQueryString('shopId');
+    var Edit = !!shopId;
     var initUrl = "/shopadmin/getshopinitinfo";
     var registerShipUrl = "/shopadmin/registershop";
+    var shopInfoUrl = "/shopadmin/getshopbyid?shopId="+shopId;
+    var editShopUrl = "/shopadmin/modifyshop"
+    console.log(shopInfoUrl);
     getShopInitInfo();
     function getShopInitInfo() {
         $.getJSON(initUrl,function (data) {

@@ -9,12 +9,22 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Date;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
 public class ShopDaoTest extends BaseTest {
     @Autowired
     private ShopDao shopDao;
+
+    @Test
+    public void TextQueryByShopId(){
+        long shopId = 7;
+        Shop shop =  shopDao.queryByShopId(shopId);
+        System.out.println(shop.getArea().getAreaName());
+
+    }
+
     @Test
     public void TestInsertShop(){
         Shop shop = new Shop();

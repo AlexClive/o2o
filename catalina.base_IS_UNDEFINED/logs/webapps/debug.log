@@ -1,21 +1,36 @@
-2022-11-28 20:25:06.863 [main] DEBUG com.zhangxuerong.o2o.dao.AreaDao.queryArea - ==>  Preparing: SELECT area_id,area_name,priority,create_time,last_edit_time FROM tb_area ORDER BY priority DESC 
-2022-11-28 20:25:06.911 [main] DEBUG com.zhangxuerong.o2o.dao.AreaDao.queryArea - ==> Parameters: 
-2022-11-28 20:25:06.956 [main] DEBUG com.zhangxuerong.o2o.dao.AreaDao.queryArea - <==      Total: 2
-2022-11-28 20:28:05.679 [main] DEBUG c.z.o2o.dao.ShopCategoryDao.queryShopCategory - ==>  Preparing: SELECT shop_category_id, shop_category_name,shop_category_desc,shop_category_img,priority,create_time,last_edit_time,parent_id FROM tb_shop_category ORDER BY priority DESC 
-2022-11-28 20:28:05.725 [main] DEBUG c.z.o2o.dao.ShopCategoryDao.queryShopCategory - ==> Parameters: 
-2022-11-28 20:28:05.765 [main] DEBUG c.z.o2o.dao.ShopCategoryDao.queryShopCategory - <==      Total: 1
-2022-11-28 20:47:34.392 [main] DEBUG com.zhangxuerong.o2o.dao.AreaDao.queryArea - ==>  Preparing: SELECT area_id,area_name,priority,create_time,last_edit_time FROM tb_area ORDER BY priority DESC 
-2022-11-28 20:47:34.441 [main] DEBUG com.zhangxuerong.o2o.dao.AreaDao.queryArea - ==> Parameters: 
-2022-11-28 20:47:34.483 [main] DEBUG com.zhangxuerong.o2o.dao.AreaDao.queryArea - <==      Total: 2
-2022-11-28 20:47:59.884 [main] DEBUG com.zhangxuerong.o2o.dao.AreaDao.queryArea - ==>  Preparing: SELECT area_id,area_name,priority,create_time,last_edit_time FROM tb_area ORDER BY priority DESC 
-2022-11-28 20:47:59.932 [main] DEBUG com.zhangxuerong.o2o.dao.AreaDao.queryArea - ==> Parameters: 
-2022-11-28 20:47:59.969 [main] DEBUG com.zhangxuerong.o2o.dao.AreaDao.queryArea - <==      Total: 2
-2022-11-28 20:49:09.776 [main] DEBUG c.z.o2o.dao.ShopCategoryDao.queryShopCategory - ==>  Preparing: SELECT shop_category_id, shop_category_name,shop_category_desc,shop_category_img,priority,create_time,last_edit_time,parent_id FROM tb_shop_category ORDER BY priority DESC 
-2022-11-28 20:49:10.038 [main] DEBUG c.z.o2o.dao.ShopCategoryDao.queryShopCategory - ==> Parameters: 
-2022-11-28 20:49:10.398 [main] DEBUG c.z.o2o.dao.ShopCategoryDao.queryShopCategory - <==      Total: 1
-2022-11-28 20:50:01.343 [main] DEBUG c.z.o2o.dao.ShopCategoryDao.queryShopCategory - ==>  Preparing: SELECT shop_category_id, shop_category_name,shop_category_desc,shop_category_img,priority,create_time,last_edit_time,parent_id FROM tb_shop_category ORDER BY priority DESC 
-2022-11-28 20:50:01.385 [main] DEBUG c.z.o2o.dao.ShopCategoryDao.queryShopCategory - ==> Parameters: 
-2022-11-28 20:50:01.419 [main] DEBUG c.z.o2o.dao.ShopCategoryDao.queryShopCategory - <==      Total: 1
-2022-11-28 20:57:28.313 [main] DEBUG c.z.o2o.dao.ShopCategoryDao.queryShopCategory - ==>  Preparing: SELECT shop_category_id, shop_category_name,shop_category_desc,shop_category_img,priority,create_time,last_edit_time,parent_id FROM tb_shop_category ORDER BY priority DESC 
-2022-11-28 20:57:28.359 [main] DEBUG c.z.o2o.dao.ShopCategoryDao.queryShopCategory - ==> Parameters: 
-2022-11-28 20:57:28.407 [main] DEBUG c.z.o2o.dao.ShopCategoryDao.queryShopCategory - <==      Total: 1
+2022-11-29 12:23:02.476 [main] DEBUG com.zhangxuerong.o2o.dao.ShopDao.queryByShopId - ==>  Preparing: SELECT s.shop_id, s.shop_category_id, s.shop_name, s.shop_desc, s.shop_addr, s.phone, s.shop_img, s.priority, s.create_time, s.last_edit_time, s.enable_status, s.advice, a.area_id, a.area_name, sc.shop_category_id, sc.shop_category_name FROM tb_shop s,tb_area a,tb_shop_category sc WHERE s.area_id = a.area_id AND s.shop_category_id = sc.shop_category_id AND s.shop_id = ? 
+2022-11-29 12:23:02.743 [main] DEBUG com.zhangxuerong.o2o.dao.ShopDao.queryByShopId - ==> Parameters: 7(Long)
+2022-11-29 12:24:55.514 [main] DEBUG com.zhangxuerong.o2o.dao.ShopDao.queryByShopId - ==>  Preparing: SELECT s.shop_id, s.shop_category_id, s.shop_name, s.shop_desc, s.shop_addr, s.phone, s.shop_img, s.priority, s.create_time, s.last_edit_time, s.enable_status, s.advice, a.area_id, a.area_name, sc.shop_category_id, sc.shop_category_name FROM tb_shop s,tb_area a,tb_shop_category sc WHERE s.area_id = a.area_id AND s.shop_category_id = sc.shop_category_id AND s.shop_id = ? 
+2022-11-29 12:24:55.789 [main] DEBUG com.zhangxuerong.o2o.dao.ShopDao.queryByShopId - ==> Parameters: 7(Long)
+2022-11-29 12:26:14.977 [main] DEBUG com.zhangxuerong.o2o.dao.ShopDao.queryByShopId - ==>  Preparing: SELECT s.shop_id, s.shop_category_id, s.shop_name, s.shop_desc, s.shop_addr, s.phone, s.shop_img, s.priority, s.create_time, s.last_edit_time, s.enable_status, s.advice, a.area_id, a.area_name, sc.shop_category_id, sc.shop_category_name FROM tb_shop s,tb_area a,tb_shop_category sc WHERE s.area_id = a.area_id AND s.shop_category_id = sc.shop_category_id AND s.shop_id = ? 
+2022-11-29 12:26:15.242 [main] DEBUG com.zhangxuerong.o2o.dao.ShopDao.queryByShopId - ==> Parameters: 7(Long)
+2022-11-29 12:26:15.595 [main] DEBUG com.zhangxuerong.o2o.dao.ShopDao.queryByShopId - <==      Total: 1
+2022-11-29 13:57:39.324 [main] DEBUG com.zhangxuerong.o2o.dao.ShopDao.updateShop - ==>  Preparing: UPDATE tb_shop SET shop_name=?, last_edit_time=? where shop_id=? 
+2022-11-29 13:57:39.376 [main] DEBUG com.zhangxuerong.o2o.dao.ShopDao.updateShop - ==> Parameters: 修改后的店铺名称(String), 2022-11-29 13:57:38.741(Timestamp), 7(Long)
+2022-11-29 13:57:39.413 [main] DEBUG com.zhangxuerong.o2o.dao.ShopDao.updateShop - <==    Updates: 1
+2022-11-29 13:57:39.416 [main] DEBUG com.zhangxuerong.o2o.dao.ShopDao.queryByShopId - ==>  Preparing: SELECT s.shop_id, s.shop_category_id, s.shop_name, s.shop_desc, s.shop_addr, s.phone, s.shop_img, s.priority, s.create_time, s.last_edit_time, s.enable_status, s.advice, a.area_id, a.area_name, sc.shop_category_id, sc.shop_category_name FROM tb_shop s,tb_area a,tb_shop_category sc WHERE s.area_id = a.area_id AND s.shop_category_id = sc.shop_category_id AND s.shop_id = ? 
+2022-11-29 13:57:39.417 [main] DEBUG com.zhangxuerong.o2o.dao.ShopDao.queryByShopId - ==> Parameters: 7(Long)
+2022-11-29 13:57:39.445 [main] DEBUG com.zhangxuerong.o2o.dao.ShopDao.queryByShopId - <==      Total: 1
+2022-11-29 14:00:02.957 [main] DEBUG com.zhangxuerong.o2o.dao.ShopDao.updateShop - ==>  Preparing: UPDATE tb_shop SET shop_name=?, last_edit_time=? where shop_id=? 
+2022-11-29 14:00:03.010 [main] DEBUG com.zhangxuerong.o2o.dao.ShopDao.updateShop - ==> Parameters: 修改后的店铺名称+1(String), 2022-11-29 14:00:02.442(Timestamp), 7(Long)
+2022-11-29 14:00:03.015 [main] DEBUG com.zhangxuerong.o2o.dao.ShopDao.updateShop - <==    Updates: 1
+2022-11-29 14:00:03.019 [main] DEBUG com.zhangxuerong.o2o.dao.ShopDao.queryByShopId - ==>  Preparing: SELECT s.shop_id, s.shop_category_id, s.shop_name, s.shop_desc, s.shop_addr, s.phone, s.shop_img, s.priority, s.create_time, s.last_edit_time, s.enable_status, s.advice, a.area_id, a.area_name, sc.shop_category_id, sc.shop_category_name FROM tb_shop s,tb_area a,tb_shop_category sc WHERE s.area_id = a.area_id AND s.shop_category_id = sc.shop_category_id AND s.shop_id = ? 
+2022-11-29 14:00:03.019 [main] DEBUG com.zhangxuerong.o2o.dao.ShopDao.queryByShopId - ==> Parameters: 7(Long)
+2022-11-29 14:00:03.047 [main] DEBUG com.zhangxuerong.o2o.dao.ShopDao.queryByShopId - <==      Total: 1
+2022-11-29 14:01:44.945 [main] DEBUG com.zhangxuerong.o2o.dao.ShopDao.updateShop - ==>  Preparing: UPDATE tb_shop SET shop_name=?, last_edit_time=? where shop_id=? 
+2022-11-29 14:01:44.995 [main] DEBUG com.zhangxuerong.o2o.dao.ShopDao.updateShop - ==> Parameters: 修改后的店铺名称+1(String), 2022-11-29 14:01:44.441(Timestamp), 7(Long)
+2022-11-29 14:01:45.000 [main] DEBUG com.zhangxuerong.o2o.dao.ShopDao.updateShop - <==    Updates: 1
+2022-11-29 14:01:45.004 [main] DEBUG com.zhangxuerong.o2o.dao.ShopDao.queryByShopId - ==>  Preparing: SELECT s.shop_id, s.shop_category_id, s.shop_name, s.shop_desc, s.shop_addr, s.phone, s.shop_img, s.priority, s.create_time, s.last_edit_time, s.enable_status, s.advice, a.area_id, a.area_name, sc.shop_category_id, sc.shop_category_name FROM tb_shop s,tb_area a,tb_shop_category sc WHERE s.area_id = a.area_id AND s.shop_category_id = sc.shop_category_id AND s.shop_id = ? 
+2022-11-29 14:01:45.004 [main] DEBUG com.zhangxuerong.o2o.dao.ShopDao.queryByShopId - ==> Parameters: 7(Long)
+2022-11-29 14:01:45.032 [main] DEBUG com.zhangxuerong.o2o.dao.ShopDao.queryByShopId - <==      Total: 1
+2022-11-29 14:05:06.890 [main] DEBUG com.zhangxuerong.o2o.dao.ShopDao.queryByShopId - ==>  Preparing: SELECT s.shop_id, s.shop_category_id, s.shop_name, s.shop_desc, s.shop_addr, s.phone, s.shop_img, s.priority, s.create_time, s.last_edit_time, s.enable_status, s.advice, a.area_id, a.area_name, sc.shop_category_id, sc.shop_category_name FROM tb_shop s,tb_area a,tb_shop_category sc WHERE s.area_id = a.area_id AND s.shop_category_id = sc.shop_category_id AND s.shop_id = ? 
+2022-11-29 14:05:07.157 [main] DEBUG com.zhangxuerong.o2o.dao.ShopDao.queryByShopId - ==> Parameters: 7(Long)
+2022-11-29 14:05:07.533 [main] DEBUG com.zhangxuerong.o2o.dao.ShopDao.queryByShopId - <==      Total: 1
+2022-11-29 14:05:07.555 [main] DEBUG com.zhangxuerong.o2o.util.ImageUtil - current complete addr is:upload/item/shop7/202211291405_0713312.png
+2022-11-29 14:05:07.556 [main] DEBUG com.zhangxuerong.o2o.util.ImageUtil - basePath is:/Users/zhangxuerong/image/upload/item/shop7/202211291405_0713312.png
+2022-11-29 14:05:08.504 [main] DEBUG com.zhangxuerong.o2o.dao.ShopDao.updateShop - ==>  Preparing: UPDATE tb_shop SET shop_name=?, shop_img=?, last_edit_time=? where shop_id=? 
+2022-11-29 14:05:08.509 [main] DEBUG com.zhangxuerong.o2o.dao.ShopDao.updateShop - ==> Parameters: 修改后的店铺名称+1(String), upload/item/shop7/202211291405_0713312.png(String), 2022-11-29 14:05:08.418(Timestamp), 7(Long)
+2022-11-29 14:05:08.516 [main] DEBUG com.zhangxuerong.o2o.dao.ShopDao.updateShop - <==    Updates: 1
+2022-11-29 14:05:08.518 [main] DEBUG com.zhangxuerong.o2o.dao.ShopDao.queryByShopId - ==>  Preparing: SELECT s.shop_id, s.shop_category_id, s.shop_name, s.shop_desc, s.shop_addr, s.phone, s.shop_img, s.priority, s.create_time, s.last_edit_time, s.enable_status, s.advice, a.area_id, a.area_name, sc.shop_category_id, sc.shop_category_name FROM tb_shop s,tb_area a,tb_shop_category sc WHERE s.area_id = a.area_id AND s.shop_category_id = sc.shop_category_id AND s.shop_id = ? 
+2022-11-29 14:05:08.520 [main] DEBUG com.zhangxuerong.o2o.dao.ShopDao.queryByShopId - ==> Parameters: 7(Long)
+2022-11-29 14:05:08.535 [main] DEBUG com.zhangxuerong.o2o.dao.ShopDao.queryByShopId - <==      Total: 1

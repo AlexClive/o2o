@@ -7,6 +7,7 @@ import com.zhangxuerong.o2o.entity.PersonInfo;
 import com.zhangxuerong.o2o.entity.Shop;
 import com.zhangxuerong.o2o.entity.ShopCategory;
 import com.zhangxuerong.o2o.enums.ShopSateEnum;
+import com.zhangxuerong.o2o.exceptions.ShopOperationException;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -21,6 +22,16 @@ import static org.junit.Assert.assertEquals;
 public class ShopServiceTest extends BaseTest {
     @Autowired
     private ShopService shopService;
+    @Test
+    public void TestModifyShop() throws ShopOperationException,FileNotFoundException {
+        Shop shop = new Shop();
+        shop.setShopId(7L);
+        shop.setShopName("修改后的店铺名称+1");
+        File shopImg = new File("/Users/zhangxuerong/Downloads/bailu.png");
+        InputStream is = new FileInputStream(shopImg);
+        ShopExecution shopExecution = shopService.modifyShop(shop,is,shopImg.getName());
+        System.out.println(shopExecution.getShop().getShopImg());
+    }
 
     @Test
     public void testAddShop() throws FileNotFoundException {
@@ -46,4 +57,5 @@ public class ShopServiceTest extends BaseTest {
         ShopExecution se = shopService.addShop(shop,is,shopImg.getName());
         assertEquals(ShopSateEnum.CHECK.getState(),se.getState());
     }
+
 }

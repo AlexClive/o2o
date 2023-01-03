@@ -22,6 +22,43 @@ public class ShopServiceImpl implements ShopService {
     private ShopDao shopDao;
 
     @Override
+    public Shop getByShopId(long shopId) {
+        return shopDao.queryByShopId(shopId);
+    }
+
+    @Override
+    public ShopExecution modifyShop(Shop shop, InputStream shopImgInputStream, String fileName) {
+
+        if(shop == null || shop.getShopId() == null){
+            return  new ShopExecution(ShopSateEnum.NULL_SHOP);
+        }else {
+            try {
+                // 判断是否需要处理图片
+                System.out.println("".equals(fileName));
+                if (shopImgInputStream != null && fileName != null && !"".equals(fileName)) {
+                    Shop tempShop = shopDao.queryByShopId(shop.getShopId());
+                    if (tempShop.getShopImg() != null) {
+                        ImageUtil.deleteFileOrPath(tempShop.getShopImg());
+                    }
+                    addShopImg(shop, shopImgInputStream, fileName);
+                }
+
+                // 更新店铺信息
+                shop.setLastEditTime(new Date());
+                int effectedNum = shopDao.updateShop(shop);
+                if (effectedNum <= 0) {
+                    return new ShopExecution(ShopSateEnum.NULL_SHOP);
+                } else {
+                    shop = shopDao.queryByShopId(shop.getShopId());
+                    return new ShopExecution(ShopSateEnum.SUCCESS, shop);
+                }
+            }catch (Exception e){
+                throw new ShopOperationException("modifyShop error:"+ e.getMessage());
+            }
+        }
+    }
+
+    @Override
     @Transactional
     public ShopExecution addShop(Shop shop, InputStream shopImgInputStream, String fileName) {
         if (shop == null) {
